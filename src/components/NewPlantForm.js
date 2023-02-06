@@ -1,10 +1,20 @@
 import React from "react";
 
-function NewPlantForm() {
+function NewPlantForm({setPlants}) {
+  function handleSubmit(event) {
+    event.preventDefault()
+    const newPlant = {
+      name: event.target.name.value,
+      image: event.target.image.value,
+      price: event.target.price.value
+    }
+    setPlants(prev => [...prev, newPlant])
+  }
+
   return (
     <div className="new-plant-form">
       <h2>New Plant</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Plant name" />
         <input type="text" name="image" placeholder="Image URL" />
         <input type="number" name="price" step="0.01" placeholder="Price" />

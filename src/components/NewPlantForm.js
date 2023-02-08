@@ -15,8 +15,20 @@ function NewPlantForm({setPlants}) {
     }
     console.log(newPlant)
 
-    // add new plant to the page
-    setPlants(prevPlants => [...prevPlants, newPlant])
+    // sent POST request
+    fetch("http://localhost:6001/plants", {
+      method: 'POST',
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(newPlant)
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        // add new plant to the page
+        setPlants(prevPlants => [...prevPlants, newPlant])
+      })
+      .catch(error => console.log(error))
   }
 
   return (

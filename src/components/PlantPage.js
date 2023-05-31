@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 function PlantPage() {
 
   const [plants, setPlants] = useState([])
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     fetch("http://localhost:6001/plants")
@@ -18,8 +19,8 @@ function PlantPage() {
   return (
     <main>
       <NewPlantForm setPlants={setPlants} />
-      <Search />
-      <PlantList plants={plants} />
+      <Search setSearch={setSearch} />
+      <PlantList plants={plants} search={search} />
     </main>
   );
 }
